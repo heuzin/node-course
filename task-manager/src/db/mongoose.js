@@ -5,24 +5,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
   useCreateIndex: true,
 })
 
-const User = mongoose.model('User', {
-  name: {
+const Task = mongoose.model('Task', {
+  description: {
     type: String,
+    required: true,
+    trim: true,
   },
-  age: {
-    type: Number,
+  completed: {
+    type: Boolean,
+    default: false,
   },
 })
-
-const me = new User({
-  name: 'Matheus',
-  age: 28,
-})
-
-me.save()
-  .then(() => {
-    console.log(me)
-  })
-  .catch((error) => {
-    console.log('Error!', error)
-  })
